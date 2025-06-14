@@ -3,11 +3,13 @@ import { fileURLToPath, URL } from 'url'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   nitro: {
-    port: parseInt(process.env.NITRO_PORT || '8081')
+    preset: 'node-server',
+    serveStatic: true,
+    devProxy: {},
   },
   server: {
-    host: '0.0.0.0',
-    port: 8081
+    port: 8081, // Cố định port ở đây
+    host: '0.0.0.0'
   },
   plugins: ['~/plugins/api.ts'],
   ssr: true,
