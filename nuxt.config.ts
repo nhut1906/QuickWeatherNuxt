@@ -2,6 +2,9 @@ import { fileURLToPath, URL } from 'url'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  nitro: {
+    port: parseInt(process.env.NITRO_PORT || '8081')
+  },
   server: {
     host: '0.0.0.0',
     port: 8081
