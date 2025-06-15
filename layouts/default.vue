@@ -93,18 +93,27 @@ const { data, pending, error } = await useAsyncData("seoDefault", async () => {
   };
 });
 
-if (data.value) {
-  useHead({
-    script: data.value.scripts,
-    meta: data.value.meta,
-    link: [
-      {
-        rel: "canonical",
-        href: config.public.appUrl + route.fullPath,
-      },
-    ],
-  });
+function updateHead() {
+  if (data.value) {
+    useHead({
+      script: data.value.scripts,
+      meta: data.value.meta,
+      link: [
+        {
+          rel: 'canonical',
+          href: config.public.VITE_APP_URL + route.fullPath,
+        },
+      ],
+    })
+  }
 }
+
+// Gọi lần đầu
+watch(
+  () => route.fullPath,
+  () => updateHead(),
+  { immediate: true }
+)
 </script>
 
 <style>
